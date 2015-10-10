@@ -13,7 +13,7 @@ import gtk
 import pkg_resources
 
 
-def show_about_dialog(name):
+def show_about_dialog(name, comment):
     """Shows the about dialog."""
     about = gtk.AboutDialog()
     about.set_name(name)
@@ -24,6 +24,7 @@ def show_about_dialog(name):
     about.set_translator_credits(
         'French by Nicolas ELIE <chrystalyst@free.fr>\n'
         'Alessio Leonarduzzi <alessio.leonarduzzi@gmail.com>')
+    comment and about.set_comments( comment )
     icon = gtk.gdk.pixbuf_new_from_file(
         pkg_resources.resource_filename(__name__, 'ui/camera48.png'))
     about.set_logo(icon),

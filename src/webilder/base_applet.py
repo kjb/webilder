@@ -39,6 +39,7 @@ class BaseApplet:
         self.leech_thread = None
         self._tt_photo = self._tt_announce = self.image_file = ''
         self.info_file = ''
+        self.image_info = {}
 
     def timer_event(self, *_args):
         """Called on regular basis to check if it is time to download photos
@@ -53,7 +54,7 @@ class BaseApplet:
             if rotate_interval:
                 # check if we have to rotate
                 if now-self.last_rotate >= rotate_interval:
-                    print "Rotating..."
+                    print "Rotating...", self.image_info, self.image_file
                     self.next_photo()
 
             if CHECK_FOR_UPDATES and now-self.last_version_check >= 8*3600:
