@@ -17,6 +17,7 @@ from webilder.webshots.wbz import parse_metadata
 import glob, random, os, time
 import threading
 import urllib
+import sys
 
 
 CHECK_FOR_UPDATES = True
@@ -32,7 +33,6 @@ class BaseApplet:
     """Implementation of base applet."""
     def __init__(self):
         self.wallpaper_list = []
-        self.last_rotate = time.time()
         self.last_autodownload = (config.get('autodownload.last_time') or
                                   (time.time() - 50*3600))
         self.last_version_check = time.time()-9*3600
@@ -40,6 +40,11 @@ class BaseApplet:
         self._tt_photo = self._tt_announce = self.image_file = ''
         self.info_file = ''
         self.image_info = {}
+        if '--rotate' in sys.argv:
+            self.last_rotate = 0
+            self.timer_event()
+        else:
+            self.last_rotate = time.time()
 
     def timer_event(self, *_args):
         """Called on regular basis to check if it is time to download photos
@@ -54,7 +59,6 @@ class BaseApplet:
             if rotate_interval:
                 # check if we have to rotate
                 if now-self.last_rotate >= rotate_interval:
-                    print "Rotating...", self.image_info, self.image_file
                     self.next_photo()
 
             if CHECK_FOR_UPDATES and now-self.last_version_check >= 8*3600:
@@ -82,6 +86,7 @@ class BaseApplet:
 
     def next_photo(self, *_args):
         """Changes to the next photo."""
+        print "Rotating..."
         reload_config()
         croot = config.get('collection.dir')
         if not self.wallpaper_list:
