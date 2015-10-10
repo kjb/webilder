@@ -94,14 +94,7 @@ class WebilderUnityIndicator(BaseApplet):
 
     def about(self, _action):
         """Opens the about dialog."""
-        comment = 'Current Wallpaper: Unknown'
-        if self.image_info:
-            comment = 'CurrentWallpaper: %s\n' % self.image_info['title'] +
-                '\n'.join( map( ': '.join, self.image_info.items() ))
-        if self.image_file:
-            comment += '\nFile: %s' % self.image_file
-        
-        AboutDialog.show_about_dialog(_('Webilder Applet'), comment)
+        AboutDialog.show_about_dialog(_('Webilder Applet'), self.get_info())
 
     def leech(self, _action):
         """Starts downloading photos."""

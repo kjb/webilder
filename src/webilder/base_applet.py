@@ -111,6 +111,7 @@ class BaseApplet:
             title = self.image_info.get('title', basename)
             album = self.image_info.get('albumTitle', dirname)
             self.set_tooltip_for_photo('%s - %s' % (title, album))
+            print self.get_info()
 
     def delete_current(self, *_args):
         """Deletes the currently set wallpaper."""
@@ -149,3 +150,27 @@ class BaseApplet:
     def set_tooltip(self, text):
         """Sets the tooltip. Implemented by derived classes."""
         raise NotImplementedError()
+
+    def get_info(self):
+        """Gets the information for the current image"""
+        template = '%(label)s: %(title)s'
+        extended_template = template + '''
+
+%(credit)s
+%(url)s
+
+File: %(file)s
+
+Tags: %(tags)s
+''' 
+        info = { 'label': 'Current Wallpaper',
+                 'title': 'Unknown',
+                 'file': self.image_file }
+
+        if self.image_info: 
+            info.update( self.image_info )
+            template = extended_template
+            
+        return template % info
+            
+        
