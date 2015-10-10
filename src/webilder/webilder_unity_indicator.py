@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 '''
-File    : webilder_gnome_applet.py
+File    : webilder_unity_indicator.py
 Author  : Nadav Samet
 Contact : thesamet@gmail.com
 Date    : 2011 May 7
@@ -43,10 +43,10 @@ class WebilderUnityIndicator(BaseApplet):
         <menuitem name="Item 1" action="Browse"/>
         <menuitem name="Item 2" action="NextPhoto"/>
         <menuitem name="Item 3" action="Leech"/>
-        <menuitem name="Item 6" action="DeleteCurrent"/>
-        <menuitem name="Item 4" action="Pref"/>
-        <menuitem name="Item 5" action="About"/>
-        <menuitem name="Item 5" action="Quit"/>
+        <menuitem name="Item 4" action="DeleteCurrent"/>
+        <menuitem name="Item 5" action="Pref"/>
+        <menuitem name="Item 6" action="About"/>
+        <menuitem name="Item 7" action="Quit"/>
     </popup>
     """
         uimanager = gtk.UIManager()
