@@ -9,4 +9,4 @@ Description : Webilder package entrypoint. Exports the software version.
 import webilder.webshots
 import webilder.flickr
 
-__version__ = '0.7.3'
+__version__ = '0.7.3-kb'
