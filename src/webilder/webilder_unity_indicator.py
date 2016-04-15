@@ -108,7 +108,8 @@ class WebilderUnityIndicator(BaseApplet):
         self.download_dlg = DownloadDialog.DownloadProgressDialog(config)
         self.download_dlg.top_widget.connect('destroy', remove_reference)
         self.download_dlg.show()
-        self.applet_icon.set_from_pixbuf(self.scaled_icon)
+        if hasattr( self, "applet_icon" ):
+            self.applet_icon.set_from_pixbuf(self.scaled_icon)
 
     def on_resize_panel(self, _widget, size):
         """Called when the panel is resized so we can scale our icon."""
